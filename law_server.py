@@ -1,11 +1,11 @@
 from fastapi import FastAPI
-from fastapi.responses import JSONResponse
 import requests
 import xml.etree.ElementTree as ET
+from mangum import Mangum
 from urllib.parse import unquote
 
 app = FastAPI()
-API_KEY = "jocu1004"  # ✅ 이메일 전체 X, ID 부분만 O
+API_KEY = "jocu1004"  # OC 값은 ID 부분만!
 
 @app.get("/search")
 def search(keyword: str):
@@ -42,4 +42,7 @@ def search(keyword: str):
         return {"result": result}
 
     except Exception as e:
-        return JSONResponse(status_code=500, content={"error": str(e)})
+        return {"error": str(e)}
+
+# Vercel handler for AWS Lambda style compatibility
+handler = Mangum(app)
