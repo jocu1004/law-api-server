@@ -1,10 +1,11 @@
 from fastapi import FastAPI
-from mangum import Mangum
 
 app = FastAPI()
 
-@app.get("/api")
-async def root():
-    return {"message": "Vercel FastAPI basic working!"}
+@app.get("/")
+def read_root():
+    return {"message": "Vercel FastAPI 기본 동작 성공!"}
 
-handler = Mangum(app)
+@app.get("/search")
+def search(keyword: str):
+    return {"result": f"당신이 검색한 키워드는: {keyword}"}
