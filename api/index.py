@@ -7,7 +7,7 @@ from mangum import Mangum
 app = FastAPI()
 
 # 국가법령정보센터 API 설정
-API_KEY = "jocu1004"  # ✅ 본인 OC 키 그대로
+API_KEY = "jocu1004@gmail.com"  # ✅ 본인 OC 키 그대로
 BASE_URL = "https://www.law.go.kr/DRF/lawSearch.do"
 
 @app.get("/api/search")
