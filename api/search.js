@@ -19,6 +19,7 @@ export default async function handler(req, res) {
     const lawResult = await parser.parseStringPromise(responseLaw.data);
     const precResult = await parser.parseStringPromise(responsePrec.data);
 
+    res.setHeader('Content-Type', 'application/json');
     return res.status(200).json({
       laws: lawResult,
       precedents: precResult
@@ -26,6 +27,7 @@ export default async function handler(req, res) {
 
   } catch (error) {
     console.error('Request failed:', error.message);
+    res.setHeader('Content-Type', 'application/json');
     return res.status(500).json({ error: 'Request failed', detail: error.message });
   }
 }
